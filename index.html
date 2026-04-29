@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Angel Eyes Tracking</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+background:rgba(0,0,0,0.35);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+color:#ff9d00;
+letter-spacing:1px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-size:15px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#ff9d00;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.85)),
+url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600') center/cover;
+display:flex;
+align-items:center;
+padding:0 8%;
+}
+
+.hero-content{
+max-width:700px;
+animation:fadeUp 1.2s ease;
+}
+
+.hero-content h1{
+font-size:72px;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero-content h1 span{
+color:#ff9d00;
+}
+
+.hero-content p{
+font-size:18px;
+color:#ddd;
+margin-bottom:40px;
+line-height:1.8;
+}
+
+.buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 35px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+transition:.4s;
+display:inline-block;
+}
+
+.btn-primary{
+background:#ff9d00;
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-5px);
+background:#ffb53c;
+}
+
+.btn-secondary{
+border:1px solid rgba(255,255,255,0.3);
+color:white;
+}
+
+.btn-secondary:hover{
+background:white;
+color:black;
+}
+
+section{
+padding:110px 8%;
+}
+
+.section-title{
+font-size:46px;
+text-align:center;
+margin-bottom:70px;
+}
+
+.section-title span{
+color:#ff9d00;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
+}
+
+.card{
+background:#121212;
+border-radius:25px;
+overflow:hidden;
+transition:.4s;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.card-content{
+padding:28px;
+}
+
+.card-content h3{
+font-size:25px;
+margin-bottom:15px;
+color:#ff9d00;
+}
+
+.card-content p{
+font-size:15px;
+color:#ccc;
+line-height:1.7;
+}
+
+.price{
+margin-top:20px;
+font-size:24px;
+font-weight:700;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.04);
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+}
+
+.feature-box{
+background:#121212;
+padding:40px 30px;
+border-radius:25px;
+text-align:center;
+}
+
+.feature-box h3{
+margin:20px 0;
+color:#ff9d00;
+}
+
+.contact{
+text-align:center;
+background:
+linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600') center/cover;
+}
+
+.contact h2{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.contact p{
+color:#ddd;
+margin-bottom:35px;
+line-height:1.8;
+}
+
+footer{
+padding:30px;
+text-align:center;
+background:black;
+color:#777;
+}
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+width:70px;
+height:70px;
+background:#25d366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+color:white;
+text-decoration:none;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+z-index:999;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+nav{
+display:none;
+}
+
+.hero-content h1{
+font-size:46px;
+}
+
+.hero-content p{
+font-size:16px;
+}
+
+.section-title{
+font-size:34px;
+}
+
+.contact h2{
+font-size:38px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+ANGEL EYES
+</div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#tour">Tours</a>
+<a href="#gallery">Gallery</a>
+<a href="#why">Why Us</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>
+Explore Bali <span>Sunrise</span> Adventure
+</h1>
+
+<p>
+Experience the best Mount Batur trekking and sunrise jeep adventure in Bali.
+Private tour, premium experience, unforgettable memories.
+</p>
+
+<div class="buttons">
+
+<a href="https://wa.me/6283111251436" class="btn btn-primary">
+BOOK NOW
+</a>
+
+<a href="#tour" class="btn btn-secondary">
+EXPLORE TOURS
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="tour">
+
+<h2 class="section-title">
+Our <span>Adventure</span> Packages
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>Mount Batur Trekking</h3>
+
+<p>
+Enjoy magical sunrise trekking experience with local guide and breakfast included.
+</p>
+
+<div class="price">
+IDR 350K
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>Sunrise Jeep Tour</h3>
+
+<p>
+Comfortable sunrise experience with private jeep and black lava adventure.
+</p>
+
+<div class="price">
+IDR 450K
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>Jeep + Hot Spring</h3>
+
+<p>
+Perfect combination of sunrise adventure and natural hot spring relaxation.
+</p>
+
+<div class="price">
+IDR 650K
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery">
+
+<h2 class="section-title">
+Adventure <span>Gallery</span>
+</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200">
+
+<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200">
+
+<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=1200">
+
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200">
+
+</div>
+
+</section>
+
+<section id="why">
+
+<h2 class="section-title">
+Why <span>Choose Us</span>
+</h2>
+
+<div class="features">
+
+<div class="feature-box">
+
+<h3>Professional Guide</h3>
+
+<p>
+Friendly and experienced local team ready to give unforgettable experience.
+</p>
+
+</div>
+
+<div class="feature-box">
+
+<h3>Private Experience</h3>
+
+<p>
+Comfortable and exclusive adventure for couples, family, and groups.
+</p>
+
+</div>
+
+<div class="feature-box">
+
+<h3>Best Sunrise Spot</h3>
+
+<p>
+Amazing panoramic sunrise with beautiful volcano scenery.
+</p>
+
+</div>
+
+<div class="feature-box">
+
+<h3>Easy Booking</h3>
+
+<p>
+Fast booking system directly via WhatsApp anytime.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2>
+ANGEL EYES TRACKING
+</h2>
+
+<p>
+Mount Batur Sunrise Trekking & Jeep Adventure<br>
+Kintamani • Bali • Indonesia
+</p>
+
+<a href="https://wa.me/6283111251436" class="btn btn-primary">
+WHATSAPP BOOKING
+</a>
+
+</section>
+
+<footer>
+© 2026 Angel Eyes Tracking — Premium Bali Adventure Website
+</footer>
+
+<a class="whatsapp" href="https://wa.me/6283111251436">
+✆
+</a>
+
+</body>
+</html>
